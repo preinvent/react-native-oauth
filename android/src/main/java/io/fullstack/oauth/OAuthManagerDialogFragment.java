@@ -255,6 +255,15 @@ public class OAuthManagerDialogFragment extends DialogFragment implements Advanc
     @Override
     public void onPageFinished(String url) {
       Log.d(TAG, "onPageFinished: " + url);
+      mWebView.loadUrl("javascript: {" +
+                "document.getElementById('locations').selectedIndex = 1;" +
+                "if ('createEvent' in document) {" +
+                "    var evt = document.createEvent('HTMLEvents');" +
+                "    evt.initEvent('change', false, true);" +
+                "    document.getElementById('locations').dispatchEvent(evt);" +
+                "} else {" +
+                "    document.getElementById('locations').fireEvent('onchange');");
+
       // mController.onComplete(url);
     }
 

@@ -29,6 +29,7 @@ import com.github.scribejava.apis.GoogleApi20;
 import com.github.scribejava.apis.GitHubApi;
 
 import com.github.scribejava.apis.SlackApi;
+import com.github.scribejava.apis.SmartthingsApi;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableArray;
@@ -65,6 +66,8 @@ public class OAuthManagerProviders {
       return OAuthManagerProviders.githubService(params, opts, callbackUrl);
     } else if (providerName.equalsIgnoreCase("slack")) {
       return OAuthManagerProviders.slackService(params, opts, callbackUrl);
+    } else if (providerName.equalsIgnoreCase("smartthings")) {
+      return OAuthManagerProviders.smartthingsService(params, opts, callbackUrl);
     } else {
       return null;
     }
@@ -207,6 +210,17 @@ public class OAuthManagerProviders {
     Log.d(TAG, "Make the builder: " + SlackApi.class);
     ServiceBuilder builder = OAuthManagerProviders._oauth2ServiceBuilder(cfg, opts, callbackUrl);
     return builder.build(SlackApi.instance());
+  }
+
+  private static OAuth20Service smartthingsService(
+          final HashMap cfg,
+          @Nullable final ReadableMap opts,
+          final String callbackUrl
+  ) {
+
+    Log.d(TAG, "Make the builder: " + SmartthingsApi.class);
+    ServiceBuilder builder = OAuthManagerProviders._oauth2ServiceBuilder(cfg, opts, callbackUrl);
+    return builder.build(SmartthingsApi.instance());
   }
 
   private static ServiceBuilder _oauth2ServiceBuilder(
