@@ -262,7 +262,8 @@ public class OAuthManagerDialogFragment extends DialogFragment implements Advanc
                 "    evt.initEvent('change', false, true);" +
                 "    document.getElementById('locations').dispatchEvent(evt);" +
                 "} else {" +
-                "    document.getElementById('locations').fireEvent('onchange');");
+                "    document.getElementById('locations').fireEvent('onchange');" +
+                "}");
 
       // mController.onComplete(url);
     }
